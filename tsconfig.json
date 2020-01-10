@@ -1,17 +1,21 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
+      "lib": ["es6"],
       "module": "commonjs",
       "noImplicitAny": true,
+      "outDir": "dist",
       "removeComments": true,
       "preserveConstEnums": true,
       "sourceMap": true,
       "strictNullChecks": true
   },
   "include": [
-    "src/**/*"
+    "src/**/*.js",
+    "src/**/*.ts",
+    "src/**/*.tsx"
   ],
   "exclude": [
-      "node_modules"
+    "node_modules/**/*"
   ]
 }
