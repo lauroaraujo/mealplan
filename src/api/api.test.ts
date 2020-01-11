@@ -1,7 +1,15 @@
-import api from './api'
+import FoodbookAPI from './api'
 
 describe('Foodbook API', () => {
-  it('is alive!', () => {
-    expect(true).toBe(true)
+  it('starts and stops correctly.', done => {
+    expect.assertions(1)
+
+    expect(async () => {
+      const api = new FoodbookAPI()
+      await api.start()
+      await api.stop()
+
+      done()
+    }).not.toThrow()
   })
 })
