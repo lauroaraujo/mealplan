@@ -5,10 +5,8 @@ module.exports = {
     '!src/**/*.d.ts'
   ],
   moduleFileExtensions: ['ts', 'tsx', 'js'],
+  preset: 'ts-jest',
   testMatch: [
     '<rootDir>/src/**/*.test.{js,ts,tsx}'
-  ],
-  transform: {
-    '.(ts|tsx)': 'ts-jest'
-  }
+  ]
 }
