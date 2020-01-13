@@ -1,12 +1,14 @@
 import { Server } from 'http'
+import { AddressInfo } from 'net'
 import express, { Express } from 'express'
 import Console from './infra/console'
+import home from './routes/home'
 
 export default class FoodbookAPI {
   private app: Express
   private server: Server
 
-  constructor (private port: Number = 3500, private console = Console.create() ) {
+  constructor (private port: number = 0, private console = Console.create() ) {
     this.app = express()
     this.registerRoutes()
   }
@@ -20,9 +22,7 @@ export default class FoodbookAPI {
   }
 
   registerRoutes = () => {
-    this.app.get('/', (req, res) => {
-      res.send(`Hi, I'm up and running on port ${this.port}!`)
-    })
+    this.app.get('/', home)
   }
 
   stop = async () => {
@@ -46,6 +46,7 @@ export default class FoodbookAPI {
     return new Promise((resolve, reject) => {
       try {
         this.server = this.app.listen(this.port, () => {
+          this.port = (this.server.address() as AddressInfo).port
           this.onServerStarted()
           resolve()
         })
