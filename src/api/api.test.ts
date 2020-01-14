@@ -36,13 +36,6 @@ describe('Foodbook API', () => {
     done()
   })
 
-  it ('assigns a random port correctly if no port is specified', async () => {
-    const newAPI = new FoodbookAPI(undefined, Console.createNull())
-    await newAPI.start()
-    expect(newAPI.getPort()).toBeGreaterThan(0)
-    await newAPI.stop()
-  })
-
   it ('[network] returns a greeting message on the root route', done => {
     expect.assertions(1)
 

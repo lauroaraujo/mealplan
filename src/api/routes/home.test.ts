@@ -1,6 +1,6 @@
 import home from './home'
-import APIResponse from '../infra/response'
-import APIRequest from '../infra/request'
+import APIResponse from '../infra/express/response'
+import APIRequest from '../infra/express/request'
 
 describe('Home route', () => {
   it ('returns a greeting message', () => {
