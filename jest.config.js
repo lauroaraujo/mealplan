@@ -8,5 +8,9 @@ module.exports = {
   preset: 'ts-jest',
   testMatch: [
     '<rootDir>/src/**/*.test.{js,ts,tsx}'
+  ],
+  watchPathIgnorePatterns: [
+    '<rootDir>/node_modules/',
+    '<rootDir>/dist/'
   ]
 }
