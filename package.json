@@ -11,7 +11,7 @@
     "build": "tsc",
     "api": "ts-node src/api",
     "api:dev": "onchange -i -k -e 'src/api/**/*.test.ts' 'src/api/**/*.ts' -- ts-node src/api",
-    "test": "jest --no-cache --watch --color",
+    "test": "jest --no-cache --watch --color --runInBand",
     "test:ci": "jest --no-cache --coverage",
     "cleanup": "rm -rf dist"
   },
