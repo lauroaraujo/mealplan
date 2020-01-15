@@ -1,9 +1,9 @@
 {
-  "name": "foodbook",
+  "name": "mealplan",
   "version": "1.0.0",
-  "description": "Food recipes manager",
+  "description": "Meal planner",
   "main": "index.js",
-  "repository": "git@github.com:lauroaraujo/foodbook.git",
+  "repository": "git@github.com:lauroaraujo/mealplan.git",
   "author": "Lauro Araujo <lauro.araujo@gmail.com>",
   "license": "MIT",
   "private": true,

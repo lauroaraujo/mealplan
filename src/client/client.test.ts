@@ -1,6 +1,6 @@
 import client from './client'
 
-describe('Foodbook Client', () => {
+describe('MealPlan Client', () => {
   it('is alive!', () => {
     expect(true).toBe(true)
   })

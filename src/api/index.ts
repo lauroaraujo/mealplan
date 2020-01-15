@@ -1,4 +1,4 @@
-import FoodbookAPI from './api'
+import MealPlanAPI from './api'
 
-const api = new FoodbookAPI()
+const api = new MealPlanAPI()
 api.start()

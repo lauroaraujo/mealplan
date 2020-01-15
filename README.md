@@ -1,2 +1,2 @@
-# foodbook
-Food recipes manager
+# MealPlan
+Meal planner

@@ -1,9 +1,8 @@
-import { AddressInfo } from 'net'
 import Console from './infra/console'
 import ExpressApp from './infra/express/ExpressApp'
 import home from './routes/home'
 
-export default class FoodbookAPI {
+export default class MealPlanAPI {
   constructor (
     private port: number = 0,
     private console = Console.create(),

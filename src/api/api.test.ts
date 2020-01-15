@@ -1,13 +1,13 @@
-import FoodbookAPI from './api'
+import MealPlanAPI from './api'
 import Console from './infra/console'
 import request from 'request'
 
-describe('Foodbook API', () => {
-  let api: FoodbookAPI
+describe('MealPlan API', () => {
+  let api: MealPlanAPI
   let url: string
 
   beforeAll(async () => {
-    api = new FoodbookAPI(0, Console.createNull(0))
+    api = new MealPlanAPI(0, Console.createNull(0))
     await api.start()
     const port = api.getPort()
     url = `http://localhost:${port}`
@@ -21,7 +21,7 @@ describe('Foodbook API', () => {
     const port = 33591
     const apiConsole = Console.createNull(2)
 
-    const newAPI = new FoodbookAPI(port, apiConsole)
+    const newAPI = new MealPlanAPI(port, apiConsole)
     expect(newAPI.getPort()).toBe(port)
 
     await newAPI.start()
