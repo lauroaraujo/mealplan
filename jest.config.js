@@ -11,6 +11,7 @@ module.exports = {
   ],
   watchPathIgnorePatterns: [
     '<rootDir>/node_modules/',
-    '<rootDir>/dist/'
+    '<rootDir>/dist/',
+    '<rootDir>/coverage/',
   ]
 }
