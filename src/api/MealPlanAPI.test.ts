@@ -1,4 +1,4 @@
-import MealPlanAPI from './MealPlaneAPI'
+import MealPlanAPI from './MealPlanAPI'
 import Console from './infra/Console'
 import request from 'request'
 
