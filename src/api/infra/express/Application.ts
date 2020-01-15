@@ -1,18 +1,18 @@
-import express, { Express } from 'express'
+import express from 'express'
 import { PathParams, RequestHandler } from 'express-serve-static-core'
 import { AddressInfo } from 'net'
 
-export default class ExpressApp {
+export default class Application {
   private server: InfraServer
   private address: AddressInfo = { port: 0, address: '', family: '' }
-  private constructor (private app: InfraExpressApplication = express()) {}
+  private constructor (private app: InfraExpressApp = express()) {}
 
-  static create(): ExpressApp {
-    return new ExpressApp()
+  static create(): Application {
+    return new Application()
   }
 
-  static createNull(): ExpressApp {
-    return new ExpressApp(new NullableExpressApplication())
+  static createNull(): Application {
+    return new Application(new NullableExpressApp())
   }
 
   get = (path: string, handler: RequestHandler) => {
@@ -53,7 +53,7 @@ export default class ExpressApp {
   getAddress = (https: boolean = false): string => `http${https ? 's' : ''}://${this.getIPAddress()}:${this.getPort()}`
 }
 
-class NullableExpressApplication implements InfraExpressApplication {
+class NullableExpressApp implements InfraExpressApp {
   private server: InfraServer
 
   get = () => this
@@ -94,8 +94,8 @@ class NullableInfraServer implements InfraServer {
 type ListenCallback = (...args: any[]) => void
 type CloseCallback = (err?: Error) => void
 
-interface InfraExpressApplication {
-  get(path: PathParams, handler: RequestHandler): InfraExpressApplication
+interface InfraExpressApp {
+  get(path: PathParams, handler: RequestHandler): InfraExpressApp
   listen(port: number, callback?: ListenCallback): InfraServer
 }
 

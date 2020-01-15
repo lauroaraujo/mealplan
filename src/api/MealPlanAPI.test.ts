@@ -1,5 +1,5 @@
-import MealPlanAPI from './api'
-import Console from './infra/console'
+import MealPlanAPI from './MealPlaneAPI'
+import Console from './infra/Console'
 import request from 'request'
 
 describe('MealPlan API', () => {

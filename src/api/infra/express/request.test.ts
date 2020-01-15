@@ -1,7 +1,7 @@
-import APIRequest from './request'
+import Request from './Request'
 
-describe('APIRequest Infra', () => {
+describe('Request Infra', () => {
   it('exists', () => {
-    expect(() => APIRequest.createNull()).not.toThrow()
+    expect(() => Request.createNull()).not.toThrow()
   })
 })

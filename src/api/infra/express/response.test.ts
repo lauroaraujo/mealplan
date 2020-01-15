@@ -1,8 +1,8 @@
-import APIResponse from './response'
+import Response from './Response'
 
-describe('APIResponse Infra', () => {
+describe('Response Infra', () => {
   it('can set the response status', () => {
-    const res = APIResponse.createNull()
+    const res = Response.createNull()
     res.status(201)
     expect(res.getLastStatus()).toBe(201)
 
@@ -11,7 +11,7 @@ describe('APIResponse Infra', () => {
   })
 
   it('Can set the response with send()', () => {
-    const res = APIResponse.createNull()
+    const res = Response.createNull()
     res.send('response result')
     expect(res.getLastOutput()).toBe('response result')
 
@@ -23,7 +23,7 @@ describe('APIResponse Infra', () => {
   })
 
   it('Can set the response with json()', () => {
-    const res = APIResponse.createNull()
+    const res = Response.createNull()
     res.json('json result')
     expect(res.getLastOutput()).toBe('json result')
 

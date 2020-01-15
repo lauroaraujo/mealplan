@@ -1,12 +1,12 @@
-import Console from './infra/console'
-import ExpressApp from './infra/express/ExpressApp'
+import Console from './infra/Console'
+import Application from './infra/express/Application'
 import home from './routes/home'
 
 export default class MealPlanAPI {
   constructor (
     private port: number = 0,
     private console = Console.create(),
-    private app: ExpressApp = ExpressApp.create()
+    private app: Application = Application.create()
   ) {
     this.registerRoutes()
   }

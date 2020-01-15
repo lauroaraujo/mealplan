@@ -1,21 +1,21 @@
-import ExpressApp from './ExpressApp'
+import Application from './Application'
 import request from 'request'
 
-describe('ExpressApp', () => {
-  let expressApp: ExpressApp
+describe('Express Application', () => {
+  let application: Application
 
   beforeAll(async () => {
-    expressApp = await ExpressApp
+    application = await Application
       .create()
       .start()
   })
 
   afterAll(async () => {
-    await expressApp.stop()
+    await application.stop()
   })
 
   it('uses the provided port on start().', async () => {
-    const app = ExpressApp.createNull()
+    const app = Application.createNull()
 
     const port = 33591
     await app.start(port)
@@ -24,7 +24,7 @@ describe('ExpressApp', () => {
   })
 
   it ('[os] assigns a random port correctly if no port is specified', async () => {
-    const app = ExpressApp.create()
+    const app = Application.create()
     await app.start()
     expect(app.getPort()).toBeGreaterThan(0)
     await app.stop()
@@ -33,7 +33,7 @@ describe('ExpressApp', () => {
   it ('[network] returns an error html if there is no route', done => {
     expect.assertions(1)
 
-    request(expressApp.getAddress(), (_err, _response, body) => {
+    request(application.getAddress(), (_err, _response, body) => {
       const errorHtml =
 `<!DOCTYPE html>
 <html lang="en">

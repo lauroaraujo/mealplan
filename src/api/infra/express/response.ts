@@ -1,31 +1,31 @@
-import { Response } from 'express'
+import { Response as ExpressResponse } from 'express'
 
-export default class APIResponse {
+export default class Response {
   private lastOutput: any
   private lastStatus: number
 
   private constructor (private response: InfraResponse) {}
 
-  static create (expressRes: Response) {
-    return new APIResponse(expressRes)
+  static create (expressRes: ExpressResponse) {
+    return new Response(expressRes)
   }
 
   static createNull () {
-    return new APIResponse(new NullableResponse())
+    return new Response(new NullableResponse())
   }
 
-  send = (body: any): APIResponse => {
+  send = (body: any): Response => {
     this.lastOutput = body
     return this
   }
 
-  json = (body: any): APIResponse => {
+  json = (body: any): Response => {
     this.lastOutput = body
     this.response.json(body)
     return this
   }
 
-  status = (status: number): APIResponse => {
+  status = (status: number): Response => {
     this.lastStatus = status
     this.response.status(status)
     return this

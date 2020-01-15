@@ -1,4 +1,4 @@
-import Console from './console'
+import Console from './Console'
 
 describe('Console Infrastructure', () => {
   it ('can return the last output', () => {

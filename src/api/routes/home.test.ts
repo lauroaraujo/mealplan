@@ -1,11 +1,11 @@
 import home from './home'
-import APIResponse from '../infra/express/response'
-import APIRequest from '../infra/express/request'
+import Response from '../infra/express/Response'
+import Request from '../infra/express/Request'
 
 describe('Home route', () => {
   it ('returns a greeting message', () => {
-    const req = APIRequest.createNull()
-    const res = APIResponse.createNull()
+    const req = Request.createNull()
+    const res = Response.createNull()
     home(req, res)
 
     expect(res.getLastOutput()).toBe(`Hi, I'm up and running!`)
