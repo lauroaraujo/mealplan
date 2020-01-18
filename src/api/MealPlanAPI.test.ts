@@ -1,5 +1,6 @@
 import MealPlanAPI from './MealPlanAPI'
 import Console from './infra/Console'
+import Application from './infra/express/Application'
 import request from 'request'
 
 describe('MealPlan API', () => {
@@ -17,11 +18,15 @@ describe('MealPlan API', () => {
     await api.stop()
   })
 
+  it('constructor works', () => {
+    expect(new MealPlanAPI().getPort()).toBe(0)
+  })
+
   it('starts and stops correctly.', async (done) => {
     const port = 33591
     const apiConsole = Console.createNull(2)
 
-    const newAPI = new MealPlanAPI(port, apiConsole)
+    const newAPI = new MealPlanAPI(port, apiConsole, Application.createNull())
     expect(newAPI.getPort()).toBe(port)
 
     await newAPI.start()
