@@ -35,7 +35,7 @@ export default class Application {
 
   stop = async (): Promise<this> => {
     if (!this.server) {
-      return this
+      throw(new Error('Server never started.'))
     }
 
     return new Promise((resolve, reject) => {
