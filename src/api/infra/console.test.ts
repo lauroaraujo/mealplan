@@ -9,6 +9,11 @@ describe('Console Infrastructure', () => {
     expect(console.getLastLog()).toEqual(log)
   })
 
+  it ('getLastLog() returns an empty string if there\'s no log history', () => {
+    const console = Console.createNull(0)
+    expect(console.getLastLog()).toEqual('')
+  })
+
   it ('can configure the history size', () => {
     const console = Console.createNull(2)
     expect(console.getHistory()).toEqual(new Array(2).fill(''))

@@ -1,9 +1,30 @@
 import Env from './Env'
 
+const overrideEnvVariable = (key: string, value: any) => {
+  const originalEnvVar = process.env[key]
+  process.env[key] = value
+
+  return originalEnvVar
+}
+
+const restoreEnvVariable = (key: string, originalEnvVar: string | null | undefined) => {
+  if (originalEnvVar == null) {
+    delete process.env[key]
+  } else {
+    process.env[key] = originalEnvVar
+  }
+}
+
 describe('Env Infra', () => {
   it('get() returns a specific variable.', () => {
-    const env = Env.createNull({ value: 'variable' })
-    expect(env.get('value')).toBe('variable')
+    const originalEnvVar = overrideEnvVariable('UT_ENV_VAR', 'some-variable')
+
+    try {
+      const env = Env.create()
+      expect(env.get('UT_ENV_VAR')).toBe('some-variable')
+    } finally {
+      restoreEnvVariable('UT_ENV_VAR', originalEnvVar)
+    }
   })
 
   it('get() returns an empty string if the variable is not defined.', () => {
