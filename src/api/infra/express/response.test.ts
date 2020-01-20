@@ -1,4 +1,6 @@
+import got from 'got'
 import Response from './Response'
+import Application from './Application'
 
 describe('Response Infra', () => {
   it('can set the response status', () => {
@@ -32,5 +34,19 @@ describe('Response Infra', () => {
 
     res.json({ a: 'json '})
     expect(res.getLastOutput()).toEqual({ a: 'json '})
+  })
+
+  it('[network] works with an actual express response', async () => {
+    expect.assertions(1)
+
+    const app = await Application.create()
+    app.get('/', (_req, res) => {
+      const response = Response.create(res)
+      response.send('OK')
+    })
+
+    await app.start()
+    const { body } = await got.get(`http://localhost:${app.getPort()}`)
+    expect(body).toBe('OK')
   })
 })

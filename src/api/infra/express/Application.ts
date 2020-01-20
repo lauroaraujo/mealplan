@@ -49,8 +49,6 @@ export default class Application {
   }
 
   getPort = (): number => this.address.port
-  getIPAddress = (): string => this.address.address
-  getAddress = (https: boolean = false): string => `http${https ? 's' : ''}://${this.getIPAddress()}:${this.getPort()}`
 }
 
 class NullableExpressApp implements InfraExpressApp {

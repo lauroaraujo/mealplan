@@ -4,7 +4,7 @@ import Request from '../infra/express/Request'
 
 describe('Home route', () => {
   it ('returns a greeting message', () => {
-    const req = Request.createNull()
+    const req = Request.createNull({})
     const res = Response.createNull()
     home(req, res)
 

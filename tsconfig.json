@@ -9,7 +9,8 @@
       "removeComments": true,
       "preserveConstEnums": true,
       "sourceMap": true,
-      "strictNullChecks": true
+      "strictNullChecks": true,
+      "target": "es5"
   },
   "include": [
     "src/**/*.js",

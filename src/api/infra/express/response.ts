@@ -1,4 +1,4 @@
-import { Response as ExpressResponse } from 'express'
+import { Response as ExpressResponse, response } from 'express'
 
 export default class Response {
   private lastOutput: any
@@ -16,6 +16,7 @@ export default class Response {
 
   send = (body: any): Response => {
     this.lastOutput = body
+    this.response.send(body)
     return this
   }
 
