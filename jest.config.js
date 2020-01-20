@@ -2,7 +2,9 @@ module.exports = {
   verbose: true,
   collectCoverageFrom: [
     'src/**/*.{js,ts,tsx}',
-    '!src/**/*.d.ts'
+    '!src/**/*.d.ts',
+    '!src/**/index.ts',
+    '!src/**/run.ts'
   ],
   moduleFileExtensions: ['ts', 'tsx', 'js'],
   preset: 'ts-jest',
