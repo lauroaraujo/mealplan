@@ -1,7 +1,8 @@
-import client from './client'
+import Client from './client'
 
 describe('MealPlan Client', () => {
-  it('is alive!', () => {
-    expect(true).toBe(true)
+  it('Runs the client.', () => {
+    const client = new Client()
+    client.run()
   })
 })

@@ -1,3 +1,4 @@
-export default function run () {
-  console.log(`Client is alive`)
+export default class Client {
+  run () {
+  }
 }
