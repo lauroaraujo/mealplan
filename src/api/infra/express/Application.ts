@@ -56,36 +56,25 @@ class NullableExpressApp implements InfraExpressApp {
 
   get = () => this
 
-  listen = (port: number, cb?: ListenCallback) => {
+  listen = (port: number, cb: ListenCallback) => {
     this.server = new NullableInfraServer(port)
-
-    if (cb) {
-      setImmediate(cb)
-    }
-
+    setImmediate(cb)
     return this.server
   }
 }
 
 class NullableInfraServer implements InfraServer {
-  constructor (
-    private port: number = 1234,
-    private ipAddress: string = '127.0.0.1',
-    private family: string = 'IPv4'
-  ) {}
+  constructor (private port: number) {}
 
-  close = (cb?: CloseCallback) => {
-    if (cb) {
-      setImmediate(cb)
-    }
-
+  close = (cb: CloseCallback) => {
+    setImmediate(cb)
     return this
   }
 
   address = () => ({
     port: this.port,
-    address: this.ipAddress,
-    family: this.family
+    address: '127.0.0.1',
+    family: 'IPv4'
   })
 }
 
