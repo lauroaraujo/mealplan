@@ -1,16 +1,12 @@
 export default class Env {
-  private constructor (private _env = process.env) {}
+  private readonly env: ProcessEnv
 
-  static create() {
-    return new Env()
-  }
-
-  static createNull(_env: ProcessEnv) {
-    return new Env(_env)
+  constructor (env: ProcessEnv = process.env) {
+    this.env = Object.freeze({ ...env })
   }
 
   get = (name: string): string => {
-    return this._env[name] || ''
+    return this.env[name] || ''
   }
 
   getNumber = (name: string, defaultValue?: number): number => {

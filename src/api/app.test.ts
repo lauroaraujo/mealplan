@@ -4,7 +4,7 @@ import Console from './infra/Console'
 
 describe('MealPlan app', () => {
   it('starts and stops successfully', async () => {
-    const app = new MealPlan(Env.createNull({ PORT: '2345' }), Console.createNull())
+    const app = new MealPlan(new Env({ PORT: '2345' }), Console.createNull())
 
     await app.run()
     const appPort = app.getPort()

@@ -5,7 +5,7 @@ import Console from './infra/Console'
 export default class MealPlan {
   private api: MealPlanAPI
 
-  constructor (private env = Env.create(), private console = Console.create()) {
+  constructor (private env = new Env(), private console = Console.create()) {
     const port = this.env.getNumber('PORT', 0)
     this.api = new MealPlanAPI(port, this.console)
   }

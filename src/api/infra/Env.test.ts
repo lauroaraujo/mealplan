@@ -20,7 +20,7 @@ describe('Env Infra', () => {
     const originalEnvVar = overrideEnvVariable('UT_ENV_VAR', 'some-variable')
 
     try {
-      const env = Env.create()
+      const env = new Env()
       expect(env.get('UT_ENV_VAR')).toBe('some-variable')
     } finally {
       restoreEnvVariable('UT_ENV_VAR', originalEnvVar)
@@ -28,12 +28,12 @@ describe('Env Infra', () => {
   })
 
   it('get() returns an empty string if the variable is not defined.', () => {
-    const env = Env.createNull({})
+    const env = new Env({})
     expect(env.get('does_not_exist')).toBe('')
   })
 
   it ('getNumber() parses numbers correctly.', () => {
-    const env = Env.createNull({
+    const env = new Env({
       int: '101',
       float: '12.345',
       zero: '0',
@@ -47,7 +47,7 @@ describe('Env Infra', () => {
   })
 
   it ('getNumber() throws if variable is not a number AND no default value was provided.', () => {
-    const env = Env.createNull({
+    const env = new Env({
       empty: '',
       NULL: 'null',
       UNDEFINED: 'undefined',
@@ -67,7 +67,7 @@ describe('Env Infra', () => {
   })
 
   it ('getNumber() returns the default value if it cannot parse the number.', () => {
-    const env = Env.createNull({
+    const env = new Env({
       empty: '',
       NULL: 'null',
       UNDEFINED: 'undefined',
