@@ -1,6 +1,6 @@
 import MealPlanAPI from './MealPlanAPI'
-import Console from './infra/Console'
 import Application from './infra/express/Application'
+import ConsoleMock from './__mocks__/ConsoleMock'
 import request from 'request'
 
 describe('MealPlan API', () => {
@@ -8,14 +8,17 @@ describe('MealPlan API', () => {
   let url: string
 
   beforeAll(async () => {
-    api = new MealPlanAPI(0, Console.createNull(0))
+    api = new MealPlanAPI(0)
     await api.start()
     const port = api.getPort()
     url = `http://localhost:${port}`
+
+    ConsoleMock.mock()
   })
 
   afterAll(async () => {
     await api.stop()
+    ConsoleMock.reset()
   })
 
   it('constructor works', () => {
@@ -24,16 +27,15 @@ describe('MealPlan API', () => {
 
   it('starts and stops correctly.', async (done) => {
     const port = 33591
-    const apiConsole = Console.createNull(2)
 
-    const newAPI = new MealPlanAPI(port, apiConsole, Application.createNull())
+    const newAPI = new MealPlanAPI(port, Application.createNull())
     expect(newAPI.getPort()).toBe(port)
 
     await newAPI.start()
-    expect(apiConsole.getLastLog()).toBe(`Server listening on port ${port}`)
+    expect(ConsoleMock.getLastLog()).toBe(`Server listening on port ${port}`)
 
     await newAPI.stop()
-    expect(apiConsole.getHistory(2)).toEqual([
+    expect(ConsoleMock.getHistory(2)).toEqual([
       `Shutting down server on port ${port}...`,
       `Server on port ${port} has stopped.`
     ])

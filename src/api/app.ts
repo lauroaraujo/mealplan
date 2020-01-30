@@ -1,13 +1,12 @@
 import MealPlanAPI from './MealPlanAPI'
 import Env from './infra/Env'
-import Console from './infra/Console'
 
 export default class MealPlan {
   private api: MealPlanAPI
 
-  constructor (private env = new Env(), private console = Console.create()) {
+  constructor (private env = new Env()) {
     const port = this.env.getNumber('PORT', 0)
-    this.api = new MealPlanAPI(port, this.console)
+    this.api = new MealPlanAPI(port)
   }
 
   run = async () => {

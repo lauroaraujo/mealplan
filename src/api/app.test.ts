@@ -1,10 +1,18 @@
 import MealPlan from './app'
 import Env from './infra/Env'
-import Console from './infra/Console'
+import ConsoleMock from './__mocks__/ConsoleMock'
 
 describe('MealPlan app', () => {
+  beforeAll(() => {
+    ConsoleMock.mock()
+  })
+
+  afterAll(() => {
+    ConsoleMock.reset()
+  })
+
   it('starts and stops successfully', async () => {
-    const app = new MealPlan(new Env({ PORT: '2345' }), Console.createNull())
+    const app = new MealPlan(new Env({ PORT: '2345' }))
 
     await app.run()
     const appPort = app.getPort()
