@@ -1,10 +1,11 @@
 import got from 'got'
 import Response from './Response'
 import Application from './Application'
+import ResponseMock from '../../__mocks__/express/ResponseMock'
 
 describe('Response Infra', () => {
   it('can set the response status', () => {
-    const res = Response.createNull()
+    const res = Response.create(ResponseMock.create())
     res.status(201)
     expect(res.getLastStatus()).toBe(201)
 
@@ -13,7 +14,7 @@ describe('Response Infra', () => {
   })
 
   it('Can set the response with send()', () => {
-    const res = Response.createNull()
+    const res = Response.create(ResponseMock.create())
     res.send('response result')
     expect(res.getLastOutput()).toBe('response result')
 
@@ -25,7 +26,7 @@ describe('Response Infra', () => {
   })
 
   it('Can set the response with json()', () => {
-    const res = Response.createNull()
+    const res = Response.create(ResponseMock.create())
     res.json('json result')
     expect(res.getLastOutput()).toBe('json result')
 

@@ -10,10 +10,6 @@ export default class Response {
     return new Response(expressRes)
   }
 
-  static createNull () {
-    return new Response(new NullableResponse())
-  }
-
   send = (body: any): Response => {
     this.lastOutput = body
     this.response.send(body)
@@ -40,10 +36,4 @@ export interface InfraResponse {
   json: (body?: any) => InfraResponse
   send: (body?: any) => InfraResponse
   status: (status?: number) => InfraResponse
-}
-
-class NullableResponse implements InfraResponse {
-  json = (body?: any) => this
-  send = (body?: any) => this
-  status = (status?: number) => this
 }

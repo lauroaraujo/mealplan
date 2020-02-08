@@ -1,6 +1,5 @@
 import { Request as ExpressResponse } from 'express'
 import { ParamsDictionary } from 'express-serve-static-core'
-import RequestMock from '../../__mocks__/express/RequestMock'
 
 export default class Request {
   private constructor (private request: InfraRequest) {}

@@ -6,15 +6,8 @@ export default class ResponseMock {
 
   private constructor() {}
 
-  static create = (): ResponseMock => {
+  static create = (): Response => {
     return new ResponseMock() as any
-  }
-
-  getLastOutput = () => this.lastOutput
-  getLastStatus = () => this.lastStatus
-
-  asResponse = () => {
-    return this as any
   }
 
   send = (body: any): ResponseMock => {
