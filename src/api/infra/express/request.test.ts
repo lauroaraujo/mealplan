@@ -13,11 +13,6 @@ describe('Request Infra', () => {
     ConsoleMock.reset()
   })
 
-  it('NullableRequest can inject query parameters', () => {
-    const req = Request.createNull({ search: 'some text' })
-    expect(req.query).toEqual({ search: 'some text' })
-  })
-
   it('[network] works with an actual express request', async () => {
     expect.assertions(1)
 
