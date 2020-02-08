@@ -1,7 +1,7 @@
-import { InfraRequest } from '../infra/express/Request'
+import { Request } from 'express'
 import { InfraResponse } from '../infra/express/Response'
 
-const home = (req: InfraRequest, res: InfraResponse) => {
+const home = (req: Request, res: InfraResponse) => {
   res.send(`Hi, I'm up and running!`)
 }
 
