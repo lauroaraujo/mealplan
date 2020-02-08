@@ -1,9 +1,11 @@
-import Application from './Application'
 import got from 'got'
+
+import Application from './Application'
+import ExpressAppMock from '../../__mocks__/express/ExpressAppMock'
 
 describe('Express Application', () => {
   it('uses the provided port on start().', async () => {
-    const app = Application.createNull()
+    const app = Application.create(ExpressAppMock.create())
 
     const port = 33591
     await app.start(port)
@@ -12,7 +14,7 @@ describe('Express Application', () => {
   })
 
   it ('does nothing if stop() is called before the server starts', async () => {
-    const app = Application.createNull()
+    const app = Application.create(ExpressAppMock.create())
     await expect(app.stop())
       .rejects
       .toThrow('Server never started.')

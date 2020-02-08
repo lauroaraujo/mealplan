@@ -1,4 +1,5 @@
 import got from 'got'
+
 import Response from './Response'
 import Application from './Application'
 import ResponseMock from '../../__mocks__/express/ResponseMock'

@@ -1,4 +1,4 @@
-import { Response as ExpressResponse, response } from 'express'
+import { Response as ExpressResponse } from 'express'
 
 export default class Response {
   private lastOutput: any

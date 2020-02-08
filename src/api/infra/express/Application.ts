@@ -1,18 +1,15 @@
-import express from 'express'
-import { PathParams, RequestHandler } from 'express-serve-static-core'
+import express, { Application as ExpressApp } from 'express'
+import { RequestHandler } from 'express-serve-static-core'
 import { AddressInfo } from 'net'
+import { Server } from 'http'
 
 export default class Application {
-  private server: InfraServer
+  private server: Server
   private address: AddressInfo = { port: 0, address: '', family: '' }
-  private constructor (private app: InfraExpressApp = express()) {}
+  private constructor (private app: ExpressApp) {}
 
-  static create(): Application {
-    return new Application()
-  }
-
-  static createNull(): Application {
-    return new Application(new NullableExpressApp())
+  static create(app: ExpressApp = express()): Application {
+    return new Application(app)
   }
 
   get = (path: string, handler: RequestHandler) => {
@@ -49,44 +46,4 @@ export default class Application {
   }
 
   getPort = (): number => this.address.port
-}
-
-class NullableExpressApp implements InfraExpressApp {
-  private server: InfraServer
-
-  get = () => this
-
-  listen = (port: number, cb: ListenCallback) => {
-    this.server = new NullableInfraServer(port)
-    setImmediate(cb)
-    return this.server
-  }
-}
-
-class NullableInfraServer implements InfraServer {
-  constructor (private port: number) {}
-
-  close = (cb: CloseCallback) => {
-    setImmediate(cb)
-    return this
-  }
-
-  address = () => ({
-    port: this.port,
-    address: '127.0.0.1',
-    family: 'IPv4'
-  })
-}
-
-type ListenCallback = (...args: any[]) => void
-type CloseCallback = (err?: Error) => void
-
-interface InfraExpressApp {
-  get(path: PathParams, handler: RequestHandler): InfraExpressApp
-  listen(port: number, callback?: ListenCallback): InfraServer
-}
-
-interface InfraServer {
-  close(callback?: CloseCallback): this
-  address(): AddressInfo | string | null
 }

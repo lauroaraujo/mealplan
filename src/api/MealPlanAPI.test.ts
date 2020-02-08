@@ -1,6 +1,7 @@
 import MealPlanAPI from './MealPlanAPI'
 import Application from './infra/express/Application'
 import ConsoleMock from './__mocks__/ConsoleMock'
+import ExpressAppMock from './__mocks__/express/ExpressAppMock'
 import request from 'request'
 
 describe('MealPlan API', () => {
@@ -28,7 +29,8 @@ describe('MealPlan API', () => {
   it('starts and stops correctly.', async (done) => {
     const port = 33591
 
-    const newAPI = new MealPlanAPI(port, Application.createNull())
+    const app = Application.create(ExpressAppMock.create())
+    const newAPI = new MealPlanAPI(port, app)
     expect(newAPI.getPort()).toBe(port)
 
     await newAPI.start()
