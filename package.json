@@ -20,7 +20,7 @@
     "@types/jest": "^24.0.25",
     "@types/node": "^13.1.6",
     "@types/request": "^2.48.4",
-    "got": "^10.2.2",
+    "got": "^11.8.5",
     "jest": "^24.9.0",
     "onchange": "^6.1.0",
     "request": "^2.88.0",
